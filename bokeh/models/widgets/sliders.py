@@ -4,7 +4,7 @@
 from __future__ import absolute_import
 
 from ...core.has_props import abstract
-from ...core.properties import Bool, Int, Float, String, Date, Enum, Tuple, Instance, Color, Override
+from ...core.properties import Bool, Int, Float, String, Date, Enum, Tuple, Instance, Color, Override, Dict, Any
 from ...core.enums import SliderCallbackPolicy
 from ..callbacks import Callback
 from .widget import Widget
@@ -75,6 +75,16 @@ class Slider(AbstractSlider):
     """)
 
     format = Override(default="0[.]00")
+
+class DiscreteSlider(AbstractSlider):
+    """ Slider-based number selection widget. """
+
+    value = Float(help="""
+    Initial or selected value.
+    """)
+
+    range = Dict(Any, Any)
+
 
 class RangeSlider(AbstractSlider):
     """ Range-slider based number range selection widget. """

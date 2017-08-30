@@ -37,6 +37,7 @@ export class AbstractSliderView extends WidgetView
     prefix = 'bk-noUi-'
 
     {start, end, value, step} = @_calc_to()
+    range = @model.range or {min: start, max: end}
 
     if @model.tooltips
       formatter =  {
@@ -55,7 +56,7 @@ export class AbstractSliderView extends WidgetView
 
       noUiSlider.create(@sliderEl, {
         cssPrefix: prefix
-        range: {min: start, max: end}
+        range: range
         start: value
         step: step
         behaviour: @model.behaviour
@@ -77,7 +78,7 @@ export class AbstractSliderView extends WidgetView
       @sliderEl.noUiSlider.on('end',   (_, i) => toggleTooltip(i, false))
     else
       @sliderEl.noUiSlider.updateOptions({
-        range: {min: start, max: end}
+        range: range
         start: value
         step: step
       })
@@ -139,6 +140,8 @@ export class AbstractSlider extends Widget
     start:             [ p.Any                       ]
     end:               [ p.Any                       ]
     value:             [ p.Any                       ]
+    range:             [ p.Any                       ]
+    snap:              [ p.Boolean,     false        ]
     step:              [ p.Number,      1            ]
     format:            [ p.String                    ]
     orientation:       [ p.Orientation, "horizontal" ]
