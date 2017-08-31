@@ -59,6 +59,7 @@ export class AbstractSliderView extends WidgetView
         range: range
         start: value
         step: step
+        snap: @model.snap
         behaviour: @model.behaviour
         connect: @model.connected
         tooltips: tooltips

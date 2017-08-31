@@ -85,6 +85,8 @@ class DiscreteSlider(AbstractSlider):
 
     range = Dict(Any, Any)
 
+    snap = Bool(default=True)
+
 
 class RangeSlider(AbstractSlider):
     """ Range-slider based number range selection widget. """
