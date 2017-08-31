@@ -60,6 +60,7 @@ export class AbstractSliderView extends WidgetView
         start: value
         step: step
         snap: @model.snap
+        pips: @model.pips
         behaviour: @model.behaviour
         connect: @model.connected
         tooltips: tooltips
@@ -145,6 +146,7 @@ export class AbstractSlider extends Widget
     snap:              [ p.Boolean,     false        ]
     step:              [ p.Number,      1            ]
     format:            [ p.String                    ]
+    pips:              [ p.Any                       ]
     orientation:       [ p.Orientation, "horizontal" ]
     direction:         [ p.Any,         "ltr"        ]
     tooltips:          [ p.Boolean,     true         ]

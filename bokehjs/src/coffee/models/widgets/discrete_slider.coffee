@@ -25,5 +25,6 @@ export class DiscreteSlider extends AbstractSlider
 
   @override {
     format: "0[.]00"
-    #snap: true
+    snap: true
+    pips: {mode: 'range', stepped: true, density: 3, format: @format}
   }

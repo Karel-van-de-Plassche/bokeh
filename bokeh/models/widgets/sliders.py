@@ -87,6 +87,8 @@ class DiscreteSlider(AbstractSlider):
 
     snap = Bool(default=True)
 
+    format = Override(default="0[.]00")
+
 
 class RangeSlider(AbstractSlider):
     """ Range-slider based number range selection widget. """
