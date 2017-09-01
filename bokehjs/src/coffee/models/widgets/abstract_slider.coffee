@@ -60,13 +60,23 @@ export class AbstractSliderView extends WidgetView
         start: value
         step: step
         snap: @model.snap
-        pips: @model.pips
         behaviour: @model.behaviour
         connect: @model.connected
         tooltips: tooltips
         orientation: @model.orientation
         direction: @model.direction
       })
+
+      if @model.show_pips
+          pips = @sliderEl.noUiSlider.pips({
+              mode: @model.pip_mode,
+              density: @model.pip_density,
+              format: {
+                  to: @model.pretty,
+                  from: @model.pretty
+              stepped: true
+              }
+          })
 
       @sliderEl.noUiSlider.on('slide',  (_, __, values) => @_slide(values))
       @sliderEl.noUiSlider.on('change', (_, __, values) => @_change(values))
@@ -146,7 +156,9 @@ export class AbstractSlider extends Widget
     snap:              [ p.Boolean,     false        ]
     step:              [ p.Number,      1            ]
     format:            [ p.String                    ]
-    pips:              [ p.Any                       ]
+    show_pips:         [ p.Boolean,     true         ]
+    pip_mode:          [ p.String,      'range'      ]
+    pip_density:       [ p.Number,      3            ]
     orientation:       [ p.Orientation, "horizontal" ]
     direction:         [ p.Any,         "ltr"        ]
     tooltips:          [ p.Boolean,     true         ]
@@ -161,4 +173,4 @@ export class AbstractSlider extends Widget
 
   _formatter: (value, format) -> "#{value}"
 
-  pretty: (value) -> @_formatter(value, @format)
+  pretty: (value) => @_formatter(value, @format)
