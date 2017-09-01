@@ -156,7 +156,7 @@ export class AbstractSlider extends Widget
     snap:              [ p.Boolean,     false        ]
     step:              [ p.Number,      1            ]
     format:            [ p.String                    ]
-    show_pips:         [ p.Boolean,     true         ]
+    show_pips:         [ p.Boolean,     false        ]
     pip_mode:          [ p.String,      'range'      ]
     pip_density:       [ p.Number,      3            ]
     orientation:       [ p.Orientation, "horizontal" ]
