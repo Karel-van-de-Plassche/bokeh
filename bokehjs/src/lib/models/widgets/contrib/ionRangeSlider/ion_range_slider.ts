@@ -1,10 +1,12 @@
 //jQuery(input).ionRangeSlider(opts)
 import * as ionRangeSlider from 'ion-rangeslider'
+import * as $ from "jquery"
 import {throttle} from "core/util/callback"
 import {Color} from "core/types"
 // The "core/properties" module has all the property types
 import * as p from "core/properties"
 import {div} from "core/dom"
+import {logger} from "core/logging"
 import {Orientation, SliderCallbackPolicy} from "core/enums"
 
 // We will subclass in JavaScript from the same class that was subclassed
@@ -14,6 +16,14 @@ import {SliderSpec} from "models/widgets/abstract_slider"
 
 // This model will actually need to render things, so we must provide
 // view. The LayoutDOM model has a view already, so we will start with that
+//interface JQuery {
+//    destroy(): void;
+//    ionRangeSlider(): JQuery;
+//    ionRangeSlider(options: ionRangeSlider.Options): JQuery;
+//    reset(): void;
+//    update(option: ionRangeSlider.Options): void;
+//}
+
 export class IonRangeSliderView extends WidgetView {
   model: IonRangeSlider
 
@@ -37,6 +47,7 @@ export class IonRangeSliderView extends WidgetView {
 
   initialize(options: any): void {
     super.initialize(options)
+    logger.warn('whaat')
     this.render()
   }
 
@@ -47,6 +58,7 @@ export class IonRangeSliderView extends WidgetView {
 
   render(): void {
     if (this.sliderEl == null) {
+    logger.debug(`[ionRangeSlider] am I here?`)
       // XXX: temporary workaround for _render_css()
       super.render()
     }
@@ -82,13 +94,22 @@ export class IonRangeSliderView extends WidgetView {
     //  tooltips = false
 
     this.el.classList.add("bk-slider")
+    logger.debug(`[ionRangeSlider] created bk-slider`)
 
     if (this.sliderEl == null) {
       this.sliderEl = div() as any
-      this.el.appendChild(this.sliderEl)
+      this.el.appendChild(this.sliderEl) // XXX: bad typings; no cssPrefix
 
-      ionRangeSlider.jQuery("hi").ionRangeSlider(
-      )
+      //this.sliderEl.ionRangeSlider({} as any)
+      //ionRangeSlider.ionRangeSlider()
+      //ionRangeSlider.jQuery("hi").ionRangeSlider()
+      //ionRangeSlider.foo(5)
+      //ionRangeSlider.IonRangeSlider(this.sliderEl, {} as any, 0)
+      logger.debug(`[ionRangeSlider] Trying to get slider`)
+      var inp = $(this.el).find('.slider')[0]
+      logger.debug(`[ionRangeSlider] Something returned`)
+      jQuery(inp).ionRangeSlider()
+      logger.debug(`[ionRangeSlider] Tried to init`)
     }
   }
 }
@@ -200,6 +221,7 @@ export class IonRangeSlider extends Widget {
 
   static initClass(): void {
     this.prototype.type = "IonRangeSlider"
+    this.prototype.default_view = IonRangeSliderView
 
     this.define({
       title:             [ p.String,      ""           ],
