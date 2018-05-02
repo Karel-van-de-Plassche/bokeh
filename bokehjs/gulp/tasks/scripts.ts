@@ -81,6 +81,7 @@ gulp.task("scripts:bundle", ["scripts:compile"], (next: () => void) => {
     paths.lib.api.main,
     paths.lib.widgets.main,
     paths.lib.tables.main,
+    paths.lib.ionRangeSlider.main,
     paths.lib.gl.main,
   ]
   const bases = [paths.build_dir.tree, './node_modules']
@@ -90,12 +91,13 @@ gulp.task("scripts:bundle", ["scripts:compile"], (next: () => void) => {
   const linker = new Linker({entries, bases, excludes, sourcemaps})
   const bundles = linker.link()
 
-  const [bokehjs, api, widgets, tables, gl] = bundles
+  const [bokehjs, api, widgets, tables, IonRangeSlider, gl] = bundles
 
   bokehjs.write(paths.lib.bokehjs.output)
   api.write(paths.lib.api.output)
   widgets.write(paths.lib.widgets.output)
   tables.write(paths.lib.tables.output)
+  IonRangeSlider.write(paths.lib.ionRangeSlider.output)
   gl.write(paths.lib.gl.output)
 
   if (argv.stats) {
@@ -122,6 +124,7 @@ gulp.task("scripts:bundle", ["scripts:compile"], (next: () => void) => {
     collect_entries("api", api)
     collect_entries("widgets", widgets)
     collect_entries("tables", tables)
+    collect_entries("IonRangeSlider", IonRangeSlider)
     collect_entries("gl", gl)
 
     const csv = entries.map(([name, mod, external, minified]) => `${name},${mod},${external},${minified}`).join("\n")

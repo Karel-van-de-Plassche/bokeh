@@ -13,6 +13,7 @@ import {HasProps} from "core/has_props"
 
 import {Widgets as widget_models} from "models/widgets/main"
 import {Tables as table_models} from "models/widgets/tables/main"
+import {IonRangeSlider as ion_range_slider_models} from "models/widgets/IonRangeSlider/main"
 
 function get_defaults(name: string) {
   const defaults = models_defaults[name] || widget_defaults[name]
@@ -191,7 +192,7 @@ describe("Defaults", () => {
   it("have all Widget view models from Python in widget locations registry", () => {
     const missing = []
     for (const name of keys(widget_defaults)) {
-      if (!(name in widget_models || name in table_models)) {
+      if (!(name in widget_models || name in table_models || name in ion_range_slider_models)) {
         missing.push(name)
       }
     }
