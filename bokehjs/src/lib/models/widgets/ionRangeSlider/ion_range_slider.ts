@@ -159,23 +159,29 @@ export class IonRangeSliderView extends WidgetView {
 
 export namespace IonRangeSlider {
   export interface Attrs extends Widget.Attrs {
-      slider_type:       string
-      range:             any
-      start:             number
-      end:               number
-      step:              number
-      grid:              boolean
-      callback:          any // XXX
-      format: string
-      callback_throttle: number
-      callback_policy: SliderCallbackPolicy
-      value:             any
-      prettify_enabled:  boolean
-      prettify:          any
-      force_edges:       boolean
-      prefix:            string
-      disable:           boolean
-      color:             string
+    title: string
+    show_value: boolean
+    start: any // XXX
+    end: any // XXX
+    value: any // XXX
+    step: number
+    format: string
+    orientation: Orientation
+    direction: "ltr" | "rtl"
+    tooltips: boolean
+    callback: any // XXX
+    callback_throttle: number
+    callback_policy: SliderCallbackPolicy
+    bar_color: Color
+    slider_type:       string
+    range:             any
+    grid:              boolean
+    prettify_enabled:  boolean
+    prettify:          any
+    force_edges:       boolean
+    prefix:            string
+    disable:           boolean
+    color:             string
   }
 
   export interface Props extends Widget.Props {}
@@ -195,19 +201,25 @@ export class IonRangeSlider extends Widget {
     this.prototype.type = "IonRangeSlider"
 
     this.define({
-      slider_type:       [ p.String,      "single"     ],
-      range:             [ p.Any,                      ],
+      title:             [ p.String,      ""           ],
+      show_value:        [ p.Bool,        true         ],
       start:             [ p.Number,      0            ],
       end:               [ p.Number,      1            ],
+      value:             [ p.Any,                      ],
       step:              [ p.Number,      0.1          ],
-      grid:              [ p.Bool,        true         ],
+      format:            [ p.String                    ],
+      orientation:       [ p.Orientation, "horizontal" ],
+      direction:         [ p.Any,         "ltr"        ],
+      tooltips:          [ p.Boolean,     true         ],
       callback:          [ p.Instance                  ],
       callback_throttle: [ p.Number,      200          ],
       callback_policy:   [ p.String,      "throttle"   ], // TODO (bev) enum
-      value:             [ p.Any,                      ],
+      bar_color:         [ p.Color,       "#e6e6e6"    ],
+      slider_type:       [ p.String,      "single"     ],
+      range:             [ p.Any,                      ],
+      grid:              [ p.Bool,        true         ],
       prettify_enabled:  [ p.Bool,        true         ],
       prettify:          [ p.Any,         null         ],
-      format:            [ p.String                    ],
       force_edges:       [ p.Bool,        false        ],
       prefix:            [ p.String,      ""           ],
       disable:           [ p.Bool,        false        ],

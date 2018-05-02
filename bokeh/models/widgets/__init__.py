@@ -11,3 +11,4 @@ from .panels import *
 from .sliders import *
 from .tables import *
 from .widget import *
+from .contrib import *

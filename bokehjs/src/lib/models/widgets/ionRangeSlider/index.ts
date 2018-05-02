@@ -1,1 +1,1 @@
-export {IonRangeSlider}   from "./ion_range_slider"
+export {IonRangeSlider} from "./ion_range_slider"
