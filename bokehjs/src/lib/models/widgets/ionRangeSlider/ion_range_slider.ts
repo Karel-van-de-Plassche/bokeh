@@ -3,6 +3,8 @@ import * as ionRangeSlider from 'ion-rangeslider'
 import {throttle} from "core/util/callback"
 // The "core/properties" module has all the property types
 import * as p from "core/properties"
+import {div} from "core/dom"
+import {SliderCallbackPolicy} from "core/enums"
 
 // We will subclass in JavaScript from the same class that was subclassed
 // from in Python
@@ -14,7 +16,7 @@ import {SliderSpec} from "models/widgets/abstract_slider"
 export class IonRangeSliderView extends WidgetView {
   model: IonRangeSlider
 
-  protected sliderEl: ionRangeSlider.Instance
+  protected sliderEl: HTMLElement
   protected titleEl: HTMLElement
   protected valueEl: HTMLElement
   protected callback_wrapper?: () => void
@@ -64,19 +66,19 @@ export class IonRangeSliderView extends WidgetView {
     }
     //
     // Set up parameters
-    const prefix = 'bk-ionRange-'
+    //const prefix = 'bk-ionRange-'
 
-    const {start, end, value, step} = this._calc_to()
+    //const {start, end, value, step} = this._calc_to()
 
-    let tooltips: boolean | any[] // XXX
-    if (this.model.tooltips) {
-      const formatter = {
-        to: (value: number): string => this.model.pretty(value),
-      }
+    //let tooltips: boolean | any[] // XXX
+    //if (this.model.tooltips) {
+    //  const formatter = {
+    //    to: (value: number): string => this.model.pretty(value),
+    //  }
 
-      tooltips = repeat(formatter, value.length)
-    } else
-      tooltips = false
+    //  tooltips = repeat(formatter, value.length)
+    //} else
+    //  tooltips = false
 
     this.el.classList.add("bk-slider")
 
@@ -84,7 +86,7 @@ export class IonRangeSliderView extends WidgetView {
       this.sliderEl = div() as any
       this.el.appendChild(this.sliderEl)
 
-      jQuery(input).ionRangeSlider(
+      ionRangeSlider.jQuery("hi").ionRangeSlider(
       )
     }
   }
@@ -163,9 +165,11 @@ export namespace IonRangeSlider {
       end:               number
       step:              number
       grid:              boolean
+      callback:          any // XXX
+      format: string
       callback_throttle: number
-      callback_policy:   string
-      values:            any
+      callback_policy: SliderCallbackPolicy
+      value:             any
       prettify_enabled:  boolean
       prettify:          any
       force_edges:       boolean
@@ -197,11 +201,13 @@ export class IonRangeSlider extends Widget {
       end:               [ p.Number,      1            ],
       step:              [ p.Number,      0.1          ],
       grid:              [ p.Bool,        true         ],
+      callback:          [ p.Instance                  ],
       callback_throttle: [ p.Number,      200          ],
-      callback_policy:   [ p.String,      "throttle"   ],
-      values:            [ p.Any,                      ],
+      callback_policy:   [ p.String,      "throttle"   ], // TODO (bev) enum
+      value:             [ p.Any,                      ],
       prettify_enabled:  [ p.Bool,        true         ],
       prettify:          [ p.Any,         null         ],
+      format:            [ p.String                    ],
       force_edges:       [ p.Bool,        false        ],
       prefix:            [ p.String,      ""           ],
       disable:           [ p.Bool,        false        ],
