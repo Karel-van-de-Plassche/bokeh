@@ -1,10 +1,11 @@
 //jQuery(input).ionRangeSlider(opts)
 import * as ionRangeSlider from 'ion-rangeslider'
 import {throttle} from "core/util/callback"
+import {Color} from "core/types"
 // The "core/properties" module has all the property types
 import * as p from "core/properties"
 import {div} from "core/dom"
-import {SliderCallbackPolicy} from "core/enums"
+import {Orientation, SliderCallbackPolicy} from "core/enums"
 
 // We will subclass in JavaScript from the same class that was subclassed
 // from in Python
@@ -207,7 +208,7 @@ export class IonRangeSlider extends Widget {
       end:               [ p.Number,      1            ],
       value:             [ p.Any,                      ],
       step:              [ p.Number,      0.1          ],
-      format:            [ p.String                    ],
+      format:            [ p.String,      "0[.]00"     ],
       orientation:       [ p.Orientation, "horizontal" ],
       direction:         [ p.Any,         "ltr"        ],
       tooltips:          [ p.Boolean,     true         ],

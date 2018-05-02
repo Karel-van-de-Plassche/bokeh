@@ -39,7 +39,7 @@ export const lib = {
     output: join(build_dir.js, "bokeh-tables.js"),
   },
   ionRangeSlider: {
-    main: join(build_dir.tree, "models/widgets/ionRangeSlider/main.js"),
+    main: join(build_dir.tree, "models/widgets/contrib/ionRangeSlider/main.js"),
     output: join(build_dir.js, "bokeh-ionRangeSlider.js"),
   },
   gl: {

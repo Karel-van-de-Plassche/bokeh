@@ -13,7 +13,7 @@ import {HasProps} from "core/has_props"
 
 import {Widgets as widget_models} from "models/widgets/main"
 import {Tables as table_models} from "models/widgets/tables/main"
-import {IonRangeSlider as ion_range_slider_models} from "models/widgets/ionRangeSlider/main"
+import {IonRangeSlider as ion_range_slider_models} from "models/widgets/contrib/ionRangeSlider/main"
 
 function get_defaults(name: string) {
   const defaults = models_defaults[name] || widget_defaults[name]

@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from datetime import date
+#from datetime import date
 
 from bokeh.document import Document
 from bokeh.embed import file_html
@@ -62,8 +62,8 @@ doc.add_root(sliders)
 
 if __name__ == "__main__":
     doc.validate()
-    filename = "sliders.html"
+    filename = "ion_range_sliders.html"
     with open(filename, "w") as f:
-        f.write(file_html(doc, INLINE, "sliders"))
+        f.write(file_html(doc, INLINE, "ion_range_sliders"))
     print("Wrote %s" % filename)
     view(filename)

@@ -1,6 +1,6 @@
 #from bokeh.core.properties import (Float, Instance, Tuple, Bool, Enum,
 #                                   List, String, Any)
-from ....core.properties import Bool, Int, Float, String, Date, Enum, Tuple, Instance, Color, Override
+from ....core.properties import Bool, Float, String, Enum, Tuple, Instance, Color
 from ....core.enums import SliderCallbackPolicy, enumeration
 from ...callbacks import Callback
 from .. import Widget
@@ -35,9 +35,6 @@ class IonRangeSlider(Widget):
     Whether or not show slider's value.
     """)
 
-    format = String(help="""
-    """)
-
     orientation = Enum("horizontal", "vertical", help="""
     Orient the slider either horizontally (default) or vertically.
     """)
@@ -66,37 +63,38 @@ class IonRangeSlider(Widget):
     The "mouseup" policy is intended for scenarios in which the callback is expensive in time.
     """)
 
+    start = Float(default=0, help="""
+    The minimum allowable value.
+    """)
+
+    end = Float(default=1, help="""
+    The maximum allowable value.
+    """)
+
     value = Tuple(Float, Float, help="""
     Initial or selected range.
     """)
 
-    start = Float(help="""
-    The minimum allowable value.
-    """)
-
-    end = Float(help="""
-    The maximum allowable value.
-    """)
-
-    step = Float(default=1, help="""
+    step = Float(default=0.1, help="""
     The step between consecutive values.
     """)
 
-    format = Override(default="0[.]00")
+    format = String(default="0[.]00")
 
     bar_color = Color(default="#e6e6e6", help="""
     """)
+
     slider_type = Enum(enumeration('single', 'double'), default='single', help="""
     Choose slider type, could be single - for one handle, or double for
     two handles.
     """)
 
-    grid = Bool(default=True, help="""
-    Show or hide the grid beneath the slider.
-    """)
-
     range = Tuple(Float, Float, help="""
     The start and end values for the range.
+    """)
+
+    grid = Bool(default=True, help="""
+    Show or hide the grid beneath the slider.
     """)
 
     prettify_enabled = Bool(default=True, help="""
