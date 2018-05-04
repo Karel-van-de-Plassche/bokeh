@@ -1,9 +1,9 @@
 #from bokeh.core.properties import (Float, Instance, Tuple, Bool, Enum,
 #                                   List, String, Any)
-from ....core.properties import Bool, Float, String, Enum, Tuple, Instance, Color
-from ....core.enums import SliderCallbackPolicy, enumeration
-from ...callbacks import Callback
-from .. import Widget
+from .....core.properties import Bool, Float, String, Enum, Tuple, Instance, Color
+from .....core.enums import SliderCallbackPolicy, enumeration
+from ....callbacks import Callback
+from ... import Widget
 
 class IonRangeSlider(Widget):
     # The special class attribute ``__implementation__`` should contain a string
@@ -11,13 +11,13 @@ class IonRangeSlider(Widget):
     # of the custom extension model or a string name of a JavaScript (or
     # CoffeeScript) file with the implementation.
 
-    #__implementation__ = 'extensions_ion_range_slider.coffee'
-    #__javascript__ = ["https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js",
-    #                  "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/js/ion.rangeSlider.js"]
-    #__css__ = ["https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css",
-    #           "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/css/ion.rangeSlider.css",
-    #           "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/css/ion.rangeSlider.skinFlat.min.css",
-    #           "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/img/sprite-skin-flat.png"]
+    __implementation__ = 'ion_range_slider.ts'
+    __javascript__ = ["https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js",
+                      "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/js/ion.rangeSlider.js"]
+    __css__ = ["https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css",
+               "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/css/ion.rangeSlider.css",
+               "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/css/ion.rangeSlider.skinFlat.min.css",
+               "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/img/sprite-skin-flat.png"]
 
     # Below are all the "properties" for this model. Bokeh properties are
     # class attributes that define the fields (and their types) that can be

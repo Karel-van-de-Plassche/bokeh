@@ -7,7 +7,8 @@ from bokeh.embed import file_html
 from bokeh.resources import INLINE
 from bokeh.util.browser import view
 from bokeh.models.layouts import Row, Column, WidgetBox
-from bokeh.models.widgets import IonRangeSlider, Div
+from bokeh.models.widgets.contrib import *
+from bokeh.models.widgets import Div
 from bokeh.models.callbacks import CustomJS
 
 slider = IonRangeSlider(title="Numerical", value=[50, 50], start=0, end=96, step=5)

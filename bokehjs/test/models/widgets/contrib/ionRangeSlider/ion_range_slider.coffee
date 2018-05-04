@@ -19,5 +19,6 @@ describe "ion_range_slider module", ->
 
     r = sv._calc_from([5.0])
 
-    expect(r).to.be.equal 5
-    expect(Number.isInteger(r)).to.be.true
+    expect(r).to.be.eql[ 5 ]
+    s.destroy()
+    s.reset()
